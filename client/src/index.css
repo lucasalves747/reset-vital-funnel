@@ -1,0 +1,296 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  /* Brand colors */
+  --gold: #C9A84C;
+  --gold-light: #E8C97A;
+  --gold-dark: #A07830;
+  --black-deep: #0A0A0A;
+  --black-card: #141414;
+  --black-section: #1A1A1A;
+  --ivory: #F5F0E8;
+  --ivory-muted: #D4CFC7;
+}
+
+:root {
+  --radius: 0.5rem;
+  --background: oklch(0.06 0 0);
+  --foreground: oklch(0.95 0.01 80);
+  --card: oklch(0.09 0 0);
+  --card-foreground: oklch(0.95 0.01 80);
+  --popover: oklch(0.09 0 0);
+  --popover-foreground: oklch(0.95 0.01 80);
+  --primary: oklch(0.72 0.12 80);
+  --primary-foreground: oklch(0.06 0 0);
+  --secondary: oklch(0.12 0 0);
+  --secondary-foreground: oklch(0.85 0.01 80);
+  --muted: oklch(0.15 0 0);
+  --muted-foreground: oklch(0.65 0.01 80);
+  --accent: oklch(0.72 0.12 80);
+  --accent-foreground: oklch(0.06 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.25 0.02 80 / 40%);
+  --input: oklch(0.15 0 0);
+  --ring: oklch(0.72 0.12 80);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background-color: #0A0A0A;
+    color: #F5F0E8;
+  }
+  h1, h2, h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  a[href] {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 3rem;
+      padding-right: 3rem;
+      max-width: 1200px;
+    }
+  }
+
+  /* Gold CTA Button */
+  .btn-gold {
+    background: linear-gradient(135deg, #C9A84C 0%, #E8C97A 50%, #C9A84C 100%);
+    color: #0A0A0A;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 1rem 2.5rem;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 4px 24px rgba(201, 168, 76, 0.3);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-decoration: none;
+  }
+  .btn-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(201, 168, 76, 0.5);
+    background: linear-gradient(135deg, #E8C97A 0%, #C9A84C 50%, #E8C97A 100%);
+  }
+  .btn-gold:active {
+    transform: scale(0.97) translateY(0);
+  }
+
+  /* Gold Outline Button */
+  .btn-gold-outline {
+    background: transparent;
+    color: #C9A84C;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.75rem 2rem;
+    border-radius: 4px;
+    border: 1px solid #C9A84C;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-decoration: none;
+  }
+  .btn-gold-outline:hover {
+    background: rgba(201, 168, 76, 0.1);
+    box-shadow: 0 0 20px rgba(201, 168, 76, 0.2);
+  }
+
+  /* Gold Divider */
+  .gold-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .gold-divider::before,
+  .gold-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #C9A84C, transparent);
+  }
+  .gold-divider-diamond {
+    width: 8px;
+    height: 8px;
+    background: #C9A84C;
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  /* Section styles */
+  .section-dark {
+    background-color: #0A0A0A;
+  }
+  .section-card {
+    background-color: #141414;
+  }
+  .section-alt {
+    background-color: #1A1A1A;
+  }
+
+  /* Gold text */
+  .text-gold {
+    color: #C9A84C;
+  }
+  .text-ivory {
+    color: #F5F0E8;
+  }
+  .text-ivory-muted {
+    color: #D4CFC7;
+  }
+
+  /* Card premium */
+  .card-premium {
+    background: #141414;
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    border-radius: 8px;
+    padding: 2rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card-premium:hover {
+    border-color: rgba(201, 168, 76, 0.5);
+    box-shadow: 0 4px 32px rgba(201, 168, 76, 0.1);
+  }
+
+  /* Input premium */
+  .input-premium {
+    background: #141414;
+    border: 1px solid rgba(201, 168, 76, 0.3);
+    border-radius: 4px;
+    padding: 0.875rem 1.25rem;
+    color: #F5F0E8;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    width: 100%;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    outline: none;
+  }
+  .input-premium::placeholder {
+    color: #6B6560;
+  }
+  .input-premium:focus {
+    border-color: #C9A84C;
+    box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.15);
+  }
+
+  /* Scroll reveal animation */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up {
+    animation: fadeUp 0.6s cubic-bezier(0.23, 1, 0.32, 1) both;
+  }
+  .fade-up-delay-1 { animation-delay: 0.1s; }
+  .fade-up-delay-2 { animation-delay: 0.2s; }
+  .fade-up-delay-3 { animation-delay: 0.3s; }
+  .fade-up-delay-4 { animation-delay: 0.4s; }
+
+  /* Gold shimmer on CTA */
+  @keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+  .btn-gold-shimmer {
+    background: linear-gradient(90deg, #C9A84C 0%, #E8C97A 25%, #C9A84C 50%, #E8C97A 75%, #C9A84C 100%);
+    background-size: 200% auto;
+    animation: shimmer 3s linear infinite;
+  }
+
+  /* Pre-headline label */
+  .pre-headline {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #C9A84C;
+  }
+
+  /* Roman numeral badge */
+  .roman-badge {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #C9A84C;
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid rgba(201, 168, 76, 0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+}
