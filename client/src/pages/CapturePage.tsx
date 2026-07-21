@@ -30,7 +30,7 @@ export default function CapturePage() {
         <div
           className="absolute inset-0 opacity-25"
           style={{
-            backgroundImage: `url('/manus-storage/hero_captura_576b21a8.jpg')`,
+            backgroundImage: `url('/images/hero_captura.webp')`,
             backgroundSize: "cover",
             backgroundPosition: "center right",
           }}
@@ -398,7 +398,7 @@ export default function CapturePage() {
                 }}
               >
                 <img
-                  src="/manus-storage/dr_placeholder_94bb1642.jpg"
+                  src="https://assets.cdn.filesafe.space/dkM0aNpySiIFf3uusFTa/media/69c192d4ad14000bb821045e.jpg"
                   alt="Dr. Santiago Vecina"
                   className="w-full h-full object-cover"
                 />

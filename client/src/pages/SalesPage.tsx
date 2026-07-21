@@ -76,7 +76,7 @@ export default function SalesPage() {
         <div
           className="absolute inset-0 opacity-20"
           style={{
-            backgroundImage: `url('/manus-storage/hero_vendas_022e37d3.jpg')`,
+            backgroundImage: `url('/images/hero_vendas.webp')`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -290,7 +290,7 @@ export default function SalesPage() {
                 }}
               >
                 <img
-                  src="/manus-storage/dr_placeholder_94bb1642.jpg"
+                  src="https://assets.cdn.filesafe.space/dkM0aNpySiIFf3uusFTa/media/69c192d4ad14000bb821045e.jpg"
                   alt="Dr. Santiago Vecina"
                   className="w-full h-full object-cover"
                 />
@@ -559,7 +559,7 @@ export default function SalesPage() {
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="flex justify-center">
                 <img
-                  src="/manus-storage/garantia_badge_5a01f9e6.png"
+                  src="/images/garantia_badge.webp"
                   alt="Garantia Incondicional 7 Dias"
                   className="w-52 h-52 object-contain"
                 />
