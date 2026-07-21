@@ -251,7 +251,7 @@ export default function CapturePage() {
                   <input
                     className="input-premium"
                     type="text"
-                    placeholder="Sua região (ex: São Paulo - SP)"
+                    placeholder="Miami - Flórida"
                     value={form.regiao}
                     onChange={(e) => setForm({ ...form, regiao: e.target.value })}
                     required
@@ -262,6 +262,7 @@ export default function CapturePage() {
                     onChange={(e) => setForm({ ...form, profissao: e.target.value })}
                     required
                     style={{
+                      fontFamily: "'DM Sans', sans-serif",
                       color: form.profissao ? "#F5F0E8" : "#6B6560",
                       appearance: "none",
                       backgroundImage:
@@ -271,11 +272,11 @@ export default function CapturePage() {
                       cursor: "pointer",
                     }}
                   >
-                    <option value="" disabled style={{ color: "#6B6560" }}>
+                    <option value="" disabled style={{ fontFamily: "'DM Sans', sans-serif", color: "#6B6560", background: "#141414" }}>
                       Selecione sua área de atuação
                     </option>
                     {PROFISSOES.map((p) => (
-                      <option key={p} value={p} style={{ color: "#141414" }}>
+                      <option key={p} value={p} style={{ fontFamily: "'DM Sans', sans-serif", color: "#F5F0E8", background: "#141414" }}>
                         {p}
                       </option>
                     ))}
