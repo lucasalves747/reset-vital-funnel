@@ -6,6 +6,9 @@ import { BrandHeader, ResetVitalLogo } from "@/components/BrandHeader";
 const WEBHOOK_URL =
   "https://id-preview--49b3064f-d9ff-44af-b75b-aef783c91466.lovable.app/api/public/contatos/ck_a26e15a4_a26e15a40bdef0c3c13acf55ff8430cb92b8b50fa21bd26a012d18ce6d58c89a";
 
+const LEADCONNECTOR_WEBHOOK_URL =
+  "https://services.leadconnectorhq.com/hooks/PMW6fmu3oCfXFYueuN2D/webhook-trigger/1e8d86a7-f44a-4de2-b2a0-5134c282d88b";
+
 const PROFISSOES = [
   "Limpeza residencial e comercial",
   "Construção civil",
@@ -46,21 +49,28 @@ export default function CapturePage() {
     setLoading(true);
 
     try {
-      await fetch(WEBHOOK_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          nome: form.nome,
-          email: form.email,
-          telefone: form.telefone,
-          regiao: form.regiao,
-          profissao: form.profissao,
-          tags: ["reset 21 dias"],
+      await Promise.allSettled([
+        fetch(WEBHOOK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            nome: form.nome,
+            email: form.email,
+            telefone: form.telefone,
+            regiao: form.regiao,
+            profissao: form.profissao,
+            tags: ["reset 21 dias"],
+          }),
         }),
-      });
+        fetch(LEADCONNECTOR_WEBHOOK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ nome: form.nome, email: form.email }),
+        }),
+      ]);
     } catch (err) {
-      // Não bloqueia o usuário caso o webhook falhe — o lead segue para a página de obrigado.
-      console.error("Falha ao enviar lead para o webhook:", err);
+      // Não bloqueia o usuário caso algum webhook falhe — o lead segue para a página de obrigado.
+      console.error("Falha ao enviar lead para os webhooks:", err);
     } finally {
       navigate("/obrigado-ebook");
     }
