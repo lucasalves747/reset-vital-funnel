@@ -3,18 +3,67 @@ import { useLocation } from "wouter";
 import { GoldDivider, SectionLabel, CheckItem, PageFooter } from "@/components/shared";
 import { BrandHeader, ResetVitalLogo } from "@/components/BrandHeader";
 
+const WEBHOOK_URL =
+  "https://id-preview--49b3064f-d9ff-44af-b75b-aef783c91466.lovable.app/api/public/contatos/ck_a26e15a4_a26e15a40bdef0c3c13acf55ff8430cb92b8b50fa21bd26a012d18ce6d58c89a";
+
+const PROFISSOES = [
+  "Limpeza residencial e comercial",
+  "Construção civil",
+  "Pintura",
+  "Flooring / pisos",
+  "Roofing / telhados",
+  "Landscaping / jardinagem",
+  "Moving / mudanças",
+  "Delivery e transporte",
+  "Restaurantes e alimentação",
+  "Salões de beleza e estética",
+  "Real Estate",
+  "Property management",
+  "Airbnb / vacation rental",
+  "Serviços automotivos",
+  "Contabilidade e tax services",
+  "Seguros",
+  "Consultoria migratória e documental",
+  "Marketing digital",
+  "Eventos e entretenimento",
+  "E-commerce",
+];
+
 export default function CapturePage() {
   const [, navigate] = useLocation();
-  const [form, setForm] = useState({ nome: "", email: "", whatsapp: "" });
+  const [form, setForm] = useState({
+    nome: "",
+    email: "",
+    telefone: "",
+    regiao: "",
+    profissao: "",
+  });
   const [loading, setLoading] = useState(false);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!form.nome || !form.email) return;
+    if (!form.nome || !form.email || !form.telefone || !form.regiao || !form.profissao) return;
     setLoading(true);
-    setTimeout(() => {
+
+    try {
+      await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nome: form.nome,
+          email: form.email,
+          telefone: form.telefone,
+          regiao: form.regiao,
+          profissao: form.profissao,
+          tags: ["reset 21 dias"],
+        }),
+      });
+    } catch (err) {
+      // Não bloqueia o usuário caso o webhook falhe — o lead segue para a página de obrigado.
+      console.error("Falha ao enviar lead para o webhook:", err);
+    } finally {
       navigate("/obrigado-ebook");
-    }, 800);
+    }
   }
 
   return (
@@ -184,10 +233,43 @@ export default function CapturePage() {
                   <input
                     className="input-premium"
                     type="tel"
-                    placeholder="WhatsApp (para receber o link da Masterclass)"
-                    value={form.whatsapp}
-                    onChange={(e) => setForm({ ...form, whatsapp: e.target.value })}
+                    placeholder="WhatsApp / telefone (com DDD)"
+                    value={form.telefone}
+                    onChange={(e) => setForm({ ...form, telefone: e.target.value })}
+                    required
                   />
+                  <input
+                    className="input-premium"
+                    type="text"
+                    placeholder="Sua região (ex: São Paulo - SP)"
+                    value={form.regiao}
+                    onChange={(e) => setForm({ ...form, regiao: e.target.value })}
+                    required
+                  />
+                  <select
+                    className="input-premium"
+                    value={form.profissao}
+                    onChange={(e) => setForm({ ...form, profissao: e.target.value })}
+                    required
+                    style={{
+                      color: form.profissao ? "#F5F0E8" : "#6B6560",
+                      appearance: "none",
+                      backgroundImage:
+                        "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23C9A84C' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>\")",
+                      backgroundRepeat: "no-repeat",
+                      backgroundPosition: "right 1.1rem center",
+                      cursor: "pointer",
+                    }}
+                  >
+                    <option value="" disabled style={{ color: "#6B6560" }}>
+                      Selecione sua área de atuação
+                    </option>
+                    {PROFISSOES.map((p) => (
+                      <option key={p} value={p} style={{ color: "#141414" }}>
+                        {p}
+                      </option>
+                    ))}
+                  </select>
                   <button
                     type="submit"
                     disabled={loading}
