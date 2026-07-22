@@ -4,7 +4,7 @@ import { GoldDivider, SectionLabel, CheckItem, PageFooter } from "@/components/s
 import { BrandHeader, ResetVitalLogo } from "@/components/BrandHeader";
 
 const WEBHOOK_URL =
-  "https://id-preview--49b3064f-d9ff-44af-b75b-aef783c91466.lovable.app/api/public/contatos/ck_a26e15a4_a26e15a40bdef0c3c13acf55ff8430cb92b8b50fa21bd26a012d18ce6d58c89a";
+  "https://contact-blossom-39.lovable.app/api/public/contatos/ck_6e6caf03_6e6caf03ed10fabfe5cedb1de2a828fde88de544778b556a9de475bf0b84133e";
 
 const LEADCONNECTOR_WEBHOOK_URL =
   "https://services.leadconnectorhq.com/hooks/PMW6fmu3oCfXFYueuN2D/webhook-trigger/1e8d86a7-f44a-4de2-b2a0-5134c282d88b";
@@ -251,7 +251,7 @@ export default function CapturePage() {
                   <input
                     className="input-premium"
                     type="text"
-                    placeholder="Miami - Flórida"
+                    placeholder="Sua região (ex: São Paulo - SP)"
                     value={form.regiao}
                     onChange={(e) => setForm({ ...form, regiao: e.target.value })}
                     required

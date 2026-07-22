@@ -99,7 +99,7 @@ export default function ThankYouCapture() {
             </p>
 
             <a
-              href="https://wa.me/SEUNUMERO?text=Quero+entrar+no+Grupo+VIP"
+              href="https://chat.whatsapp.com/Hc1ijON9rSCEDuSQRtJ4lx?s=cl&p=a&ilr=1"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-gold w-full max-w-sm mx-auto block py-4 mb-3"
