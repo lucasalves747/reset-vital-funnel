@@ -2,6 +2,12 @@ import { useLocation } from "wouter";
 import { PageFooter, SectionLabel } from "@/components/shared";
 import { BrandHeader } from "@/components/BrandHeader";
 
+const WELCOME_VIDEO_URL =
+  "https://assets.cdn.filesafe.space/PMW6fmu3oCfXFYueuN2D/media/6aa14cedfb8abdad105134f7.mov";
+
+const WHATSAPP_GROUP_URL =
+  "https://chat.whatsapp.com/KBaQ1xqkOKtAy307G7I9KN?mode=gi_t";
+
 export default function ThankYouCapture() {
   const [, navigate] = useLocation();
 
@@ -55,31 +61,29 @@ export default function ThankYouCapture() {
       <section className="section-alt py-20">
         <div className="container">
           <div className="max-w-xl mx-auto text-center">
-            {/* Video placeholder */}
+            {/* Vídeo de boas-vindas */}
             <div
-              className="rounded-lg overflow-hidden mb-10 flex items-center justify-center mx-auto"
+              className="rounded-lg overflow-hidden mb-4 mx-auto"
               style={{
                 maxWidth: "480px",
-                aspectRatio: "16/9",
                 background: "#141414",
                 border: "1px solid rgba(201,168,76,0.3)",
               }}
             >
-              <div className="text-center p-6">
-                <div
-                  className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3"
-                  style={{ background: "rgba(201,168,76,0.15)", border: "2px solid #C9A84C" }}
-                >
-                  <span className="text-gold text-2xl">▶</span>
-                </div>
-                <p className="text-ivory-muted text-sm">
-                  Mensagem do Dr. Santiago Vecina
-                </p>
-                <p className="text-xs mt-1" style={{ color: "#6B6560" }}>
-                  [Insira aqui o vídeo de boas-vindas — 1 min]
-                </p>
-              </div>
+              <video
+                src={WELCOME_VIDEO_URL}
+                controls
+                playsInline
+                preload="metadata"
+                className="w-full h-full block"
+                style={{ aspectRatio: "16/9", background: "#141414" }}
+              >
+                Seu navegador não suporta a reprodução de vídeo.
+              </video>
             </div>
+            <p className="text-ivory-muted text-sm mb-10">
+              Mensagem do Dr. Santiago Vecina
+            </p>
 
             <SectionLabel>Etapa 2 — Obrigatória</SectionLabel>
             <h2
@@ -99,7 +103,7 @@ export default function ThankYouCapture() {
             </p>
 
             <a
-              href="https://chat.whatsapp.com/Hc1ijON9rSCEDuSQRtJ4lx?s=cl&p=a&ilr=1"
+              href={WHATSAPP_GROUP_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-gold w-full max-w-sm mx-auto block py-4 mb-3"
