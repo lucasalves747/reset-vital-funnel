@@ -65,7 +65,8 @@ export default function ThankYouCapture() {
             <div
               className="rounded-lg overflow-hidden mb-4 mx-auto"
               style={{
-                maxWidth: "480px",
+                width: "100%",
+                maxWidth: "320px",
                 background: "#141414",
                 border: "1px solid rgba(201,168,76,0.3)",
               }}
@@ -76,7 +77,7 @@ export default function ThankYouCapture() {
                 playsInline
                 preload="metadata"
                 className="w-full h-full block"
-                style={{ aspectRatio: "16/9", background: "#141414" }}
+                style={{ aspectRatio: "9/16", objectFit: "cover", background: "#141414" }}
               >
                 Seu navegador não suporta a reprodução de vídeo.
               </video>
